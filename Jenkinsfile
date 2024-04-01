@@ -145,7 +145,7 @@ pipeline {
             steps {
                 script {
                     imageValidation().call()
-                    dockerDeploy('dev', '5232' , '8232').call()
+                    dockerDeploy('dev', '5132' , '8132').call()
                     echo "Deployed to Dev Succesfully!!!!"
                 }
             }
@@ -160,7 +160,7 @@ pipeline {
                 script {
                     imageValidation().call()
                     echo "***** Entering Test Environment *****"
-                    dockerDeploy('tst', '6232', '8232').call()
+                    dockerDeploy('tst', '6132' , '8132').call()
                 }
             }
         }
@@ -173,7 +173,7 @@ pipeline {
             steps {
                 script {
                     imageValidation().call()
-                    dockerDeploy('stage', '7232', '8232').call()
+                    dockerDeploy('stage', '7132' , '8132').call()
                 }
             }
         } 
@@ -198,7 +198,7 @@ pipeline {
                 }
                 script {
                     imageValidation().call()
-                    dockerDeploy('prod', '8232', '8232').call()
+                    dockerDeploy('prod', '8132' , '8132').call()
                 }
             }
         }
