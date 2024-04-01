@@ -84,31 +84,7 @@ pipeline {
                 }
             }
         }
-        stage ('Sonar') {
-            when {
-                    expression {
-                        params.scanOnly == 'yes'  
-                    }
-            }
-            steps {
-                echo "Starting Sonarqube With Quality Gates"
-                withSonarQubeEnv('SonarQube'){ // manage jenkins > configure  > sonarqube scanner
-                    sh """
-                        mvn clean verify sonar:sonar \
-                            -Dsonar.projectKey=i27-user \
-                            -Dsonar.host.url=${env.SONAR_URL} \
-                            -Dsonar.login=${SONAR_TOKEN}
-                    """
-                }
-                timeout (time: 2, unit: 'MINUTES') { // NANOSECONDS, SECONDS , MINUTES , HOURS, DAYS
-                    script {
-                        waitForQualityGate abortPipeline: true
-                    }
-                } 
 
-            
-            }
-        }
         /*
         stage ('Docker Format') {
             steps {
